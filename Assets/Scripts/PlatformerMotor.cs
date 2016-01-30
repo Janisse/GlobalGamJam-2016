@@ -5,23 +5,24 @@ public class PlatformerMotor : MonoBehaviour
 {
 	[SerializeField] private Animator m_Anim;            // Reference to the player's animator component.
     [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
-	[SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps;
+	[SerializeField] private float m_JumpSpeed = 4f;                  // Amount of force added when the player jumps;
+	[SerializeField] private float m_maxJumpDuration = 0.2f;                  // Amount of force added when the player jumps;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
-    private Transform m_CeilingCheck;   // A position marking where to check for ceilings
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
 
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
+	private float _jumpTimeElapsed = 0f;
+
     private void Awake()
     {
         // Setting up references.
         m_GroundCheck = transform.Find("GroundCheck");
-        m_CeilingCheck = transform.Find("CeilingCheck");
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -35,17 +36,20 @@ public class PlatformerMotor : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject != gameObject)
-                m_Grounded = true;
+			if (colliders [i].gameObject != gameObject)
+			{
+				m_Grounded = true;
+				_jumpTimeElapsed = 0f;
+			}
         }
         m_Anim.SetBool("Ground", m_Grounded);
 
         // Set the vertical animation
         m_Anim.SetFloat("VerticalSpeed", m_Rigidbody2D.velocity.y);
     }
-
-
-    public void Move(float move, bool jump)
+		
+	#region Movement
+	public void Move(float move, bool a_jump)
     {
         // Apply speed reduction if necessary.
         move = move;
@@ -54,7 +58,8 @@ public class PlatformerMotor : MonoBehaviour
         m_Anim.SetFloat("HorizontalSpeed", Mathf.Abs(move));
 
         // Move the character
-        m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+		m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+		ManageJump (a_jump);
 
         // If the input is moving the player right and the player is facing left...
         if (move > 0 && !m_FacingRight)
@@ -68,26 +73,36 @@ public class PlatformerMotor : MonoBehaviour
             // ... flip the player.
             Flip();
         }
-
-        // If the player should jump...
-        if (m_Grounded && jump && m_Anim.GetBool("Ground"))
-        {
-            // Add a vertical force to the player.
-            m_Grounded = false;
-            m_Anim.SetBool("Ground", false);
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-        }
     }
 
+	protected bool _isContinuousJump = false;
+	protected void ManageJump(bool a_isJumping)
+	{
+		if (a_isJumping && (_isContinuousJump || m_Grounded) && _jumpTimeElapsed < m_maxJumpDuration)
+		{
+    		_jumpTimeElapsed += Time.fixedDeltaTime;
 
-    private void Flip()
-    {
-        // Switch the way the player is labelled as facing.
-        m_FacingRight = !m_FacingRight;
+			m_Grounded = false;
+			m_Anim.SetBool ("Ground", false);
+			Vector2 velocity = m_Rigidbody2D.velocity;
+			velocity.y = m_JumpSpeed;
+			m_Rigidbody2D.velocity = velocity;
+		}
 
-        // Multiply the player's x local scale by -1.
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
-    }
+		_isContinuousJump = a_isJumping;
+	}
+	#endregion
+
+	#region Internal management
+	private void Flip()
+	{
+		// Switch the way the player is labelled as facing.
+		m_FacingRight = !m_FacingRight;
+
+		// Multiply the player's x local scale by -1.
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+	#endregion
 }

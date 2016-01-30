@@ -28,12 +28,9 @@ public class PlayerCharacter : MonoBehaviour
 			SpellManager.LaunchCurrentSpell();
 			gameMode.gaugeTime = 0f;
 		}
-
-		if (!_shouldJump)
-		{
-			// Read the jump input in Update so button presses aren't missed.
-			_shouldJump = CrossPlatformInputManager.GetButtonDown("Jump");
-		}
+			
+		// Read the jump input in Update so button presses aren't missed.
+		_shouldJump = CrossPlatformInputManager.GetButton("Jump");
 	}
 
 	private void FixedUpdate()
@@ -42,7 +39,6 @@ public class PlayerCharacter : MonoBehaviour
 		float h = CrossPlatformInputManager.GetAxis("Horizontal");
 		// Pass all parameters to the character control script.
 		motor.Move(h, _shouldJump);
-		_shouldJump = false;
 	}
 	#endregion
 
