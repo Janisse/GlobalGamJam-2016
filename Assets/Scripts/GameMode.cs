@@ -7,16 +7,26 @@ public class GameMode : MonoBehaviour
 	public PlayerCharacter player = null;
 	public Gauge spellGauge = null;
 	public float gaugeTime = 1f;
-	public Transform currentCheckPoint = null;
+	public Transform LevelStart = null;
 
+	internal Transform currentCheckPoint = null;
 	internal int nextSpell = 0;
 	#endregion
 
+	#region Getter
+	internal static GameMode instance;
+	#endregion
+
 	#region Class methods
+	void Awake()
+	{
+		instance = this;
+	}
 	// Use this for initialization
 	void Start ()
 	{
 		spellGauge.CreateGauges ();
+		currentCheckPoint = LevelStart;
 		SpawnPlayer ();
 	}
 	

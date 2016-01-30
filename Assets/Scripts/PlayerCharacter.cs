@@ -6,7 +6,6 @@ public class PlayerCharacter : MonoBehaviour
 {
 	#region properties
 	public PlatformerMotor motor;
-	public GameMode gameMode = null;
 	public SpellManager SpellManager = null;
 	#endregion
 
@@ -26,7 +25,7 @@ public class PlayerCharacter : MonoBehaviour
 		if(Input.GetKey(KeyCode.E))
 		{
 			SpellManager.LaunchCurrentSpell();
-			gameMode.gaugeTime = 0f;
+			GameMode.instance.gaugeTime = 0f;
 		}
 
 		if (!_shouldJump)
