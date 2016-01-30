@@ -15,21 +15,22 @@ public class Gauge : MonoBehaviour
 	public Image image = null;
 	public GameObject gaugeSeparation = null;
 
-	private List<GameObject> gaugeSeparationDict = new List<GameObject> ();
-	private float totalTime = 0f;
-	private int step = 0;
+	internal float totalTime = 0f;
+
+	private List<GameObject> _gaugeSeparationDict = new List<GameObject> ();
+	private int _step = 0;
 	#endregion
 
 	#region HUD Methods
 	internal void CreateGauges()
 	{
 		//Clear
-		foreach(GameObject obj in gaugeSeparationDict)
+		foreach(GameObject obj in _gaugeSeparationDict)
 		{
 			Destroy(obj);
 		}
-		gaugeSeparationDict.Clear ();
-		step = 0;
+		_gaugeSeparationDict.Clear ();
+		_step = 0;
 
 		//Compute gauge duration
 		totalTime = 0f;
@@ -54,7 +55,7 @@ public class Gauge : MonoBehaviour
 			float placeX = (currentTime / totalTime) * maxGaugeWidth;
 			gaugeTrsf.localPosition = new Vector3 (placeX, 0f, 0f);
 
-			gaugeSeparationDict.Add (newGaugeGO);
+			_gaugeSeparationDict.Add (newGaugeGO);
 		}
 	}
 
@@ -70,9 +71,9 @@ public class Gauge : MonoBehaviour
 			value += timeValues [i];
 			if(a_time <= value)
 			{
-				if(step != i)
+				if(_step != i)
 				{
-					step = i;
+					_step = i;
 					return true;
 				}
 				else
