@@ -15,6 +15,6 @@ public class OnClick : MonoBehaviour {
 
 	public void OnPlayClick()
 	{
-		Application.LoadLevel("Level 1");
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
 	}
 }
