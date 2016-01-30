@@ -8,8 +8,21 @@ public enum EStatus
 	Wind
 }
 
-internal class Status {
+[System.Serializable]
+public class Status
+{
+	public EStatus Type = EStatus.Fire;
+	[Tooltip("If <= 0, won't time out.")]
+	public float duration = 2f;
 
-	internal EStatus Type = EStatus.Fire;
-	internal float duration = 2f;
+	protected float _timeElapsed;
+
+	internal virtual bool ShouldTimeout(float a_timeElapsed)
+	{
+		_timeElapsed += a_timeElapsed;
+		if (duration > 0f)
+			return _timeElapsed > duration;
+		else
+			return false;
+	}
 }
