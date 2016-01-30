@@ -7,6 +7,7 @@ public class PlayerCharacter : MonoBehaviour
 	#region properties
 	public PlatformerMotor motor;
 	public GameMode gameMode = null;
+	public SpellManager SpellManager = null;
 	#endregion
 
 	#region Properties
@@ -14,19 +15,18 @@ public class PlayerCharacter : MonoBehaviour
 	#endregion
 
 	#region Class methods
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
+	private void Update()
 	{
 		//Change Power
 		if(Input.GetKey(KeyCode.A))
 		{
-			ChangePower ();
+			SpellManager.RandomSpell();
+		}
+
+		if(Input.GetKey(KeyCode.E))
+		{
+			SpellManager.LaunchCurrentSpell();
+			gameMode.gaugeTime = 0f;
 		}
 
 		if (!_shouldJump)
@@ -47,13 +47,8 @@ public class PlayerCharacter : MonoBehaviour
 	#endregion
 
 	#region Player Methods
-	internal void ChangePower()
+	internal void ChangeSpell()
 	{
 	}
 	#endregion
-
-
-
-
-
 }
