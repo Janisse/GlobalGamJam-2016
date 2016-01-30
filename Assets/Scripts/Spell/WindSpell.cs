@@ -3,6 +3,7 @@ using System.Collections;
 
 public class WindSpell : Spell
 {
+	float duration = 2f;
 	void Start ()
 	{
 		type = ESpells.Wind;
@@ -12,5 +13,6 @@ public class WindSpell : Spell
 	{
 		base.LaunchEffect (Player);
 		Debug.Log("Launch Wind Spell");
+		GameMode.instance.player.StatusManager.AddStatu(EStatus.Wind,duration);
 	}
 }
