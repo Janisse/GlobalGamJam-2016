@@ -4,7 +4,7 @@ using System.Collections;
 public class TriggerAction : MonoBehaviour
 {
 	#region properties
-	private bool isTrigger = false;
+	protected bool isTrigger = false;
 	#endregion
 
 	#region Class methods
@@ -16,19 +16,19 @@ public class TriggerAction : MonoBehaviour
 	#endregion
 
 	#region TriggerAction Methods
-	internal void OnEnter()
+	internal virtual void OnEnter()
 	{
 		if(!isTrigger)
 			Debug.Log ("Enter");
 		isTrigger = true;
 	}
 
-	internal void OnStay()
+	internal virtual void OnStay()
 	{
 		Debug.Log ("Stay");
 	}
 
-	internal void OnExit()
+	internal virtual void OnExit()
 	{
 		if(isTrigger)
 			Debug.Log ("Exit");
