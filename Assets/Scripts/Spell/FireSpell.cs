@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FireSpell : Spell {
 
-	internal override void LaunchEffect (GameObject Player)
+	internal override void LaunchEffect (PlayerCharacter Player)
 	{
 		base.LaunchEffect (Player);
 	}

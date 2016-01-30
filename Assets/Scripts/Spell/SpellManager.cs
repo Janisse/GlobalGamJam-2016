@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class SpellManager : MonoBehaviour {
 
 	public List<Spell> Spells = new List<Spell> ();
-	public GameObject Player = null;
+	public PlayerCharacter Player = null;
 	Spell CurrentSpell = null;
 
 	internal void RandomSpell ()
