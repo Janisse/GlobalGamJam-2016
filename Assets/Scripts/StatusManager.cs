@@ -5,21 +5,25 @@ using System.Collections.Generic;
 
 public class StatusManager : MonoBehaviour
 {
-	internal List<Statu> Status = new List<Statu> ();
+	internal List<Status> Status = new List<Status> ();
 
 	void Update()
 	{
-		foreach (Statu CurrentStatu in Status)
+		foreach (Status CurrentStatu in Status)
 		{
 			CurrentStatu.duration -= Time.deltaTime;
+			if (CurrentStatu.duration <= 0f)
+			{
+				Status.Remove(CurrentStatu);
+			}
 		}
 	}
 
-	void AddStatu (Statu NewStatu)
+	internal void AddStatu (Status NewStatu)
 	{
 		if (NewStatu.Type == EStatus.Water)
 		{
-			foreach (Statu CurrentStatu in Status)
+			foreach (Status CurrentStatu in Status)
 			{
 				if (CurrentStatu.Type == EStatus.Fire)
 				{
@@ -30,11 +34,23 @@ public class StatusManager : MonoBehaviour
 		Status.Add(NewStatu);
 	}
 
-	void AddStatu (EStatus Type, float duration)
+	internal void AddStatu (EStatus Type, float duration)
 	{
-		Statu NewStatu = new Statu();
+		Status NewStatu = new Status();
 		NewStatu.Type = Type;
 		NewStatu.duration = duration;
 		Status.Add(NewStatu);
+	}
+
+	internal bool CheckStatu (EStatus Type)
+	{
+		foreach (Status CurrentStatu in Status)
+		{
+			if (CurrentStatu.Type == Type)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

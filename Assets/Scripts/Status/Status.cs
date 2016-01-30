@@ -8,7 +8,7 @@ public enum EStatus
 	Wind
 }
 
-internal class Statu : MonoBehaviour {
+internal class Status {
 
 	internal EStatus Type = EStatus.Fire;
 	internal float duration = 2f;

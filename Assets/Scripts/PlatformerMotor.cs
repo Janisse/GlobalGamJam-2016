@@ -17,7 +17,7 @@ public class PlatformerMotor : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
-    protected float LastMove = 0f;
+    protected bool LastMove = true;
 
     private void Awake()
     {
@@ -53,16 +53,18 @@ public class PlatformerMotor : MonoBehaviour
 		// move = move;
        	if(move != 0f)
 		{
-			LastMove = move;
+			LastMove = move>0;
 		}
-		else
+		if (GameMode.instance.player.StatusManager.CheckStatu(EStatus.Fire))
 		{
-			foreach (Statu CurrentStatu in GameMode.instance.player.StatusManager.Status)
-			{
-				CurrentStatu.duration -= Time.deltaTime;
-			}
-
+			if(LastMove)
+			move = 1;
+			else
+			move = -1;
 		}
+		
+
+		
         // The Speed animator parameter is set to the absolute value of the horizontal input.
         m_Anim.SetFloat("HorizontalSpeed", Mathf.Abs(move));
 

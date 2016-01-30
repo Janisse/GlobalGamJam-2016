@@ -18,7 +18,7 @@ public class PlayerCharacter : MonoBehaviour
 	private void Update()
 	{
 		//Change Power
-		if(Input.GetKey(KeyCode.A))
+		if(Input.GetKey(KeyCode.R))
 		{
 			SpellManager.RandomSpell();
 		}
