@@ -12,6 +12,6 @@ public class WindSpell : Spell
 	internal override void LaunchEffect (PlayerCharacter Player)
 	{
 		base.LaunchEffect (Player);
-		GameMode.instance.player.StatusManager.AddStatus(EStatus.Wind,duration);
+		GameMode.instance.player.StatusManager.AddStatus(new Status(EStatus.Wind, duration));
 	}
 }

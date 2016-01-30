@@ -5,52 +5,73 @@ using System.Collections.Generic;
 
 public class StatusManager
 {
-	internal List<Status> _status = new List<Status> ();
+	internal   Dictionary<int, StatusWrapper> _status = new Dictionary<int, StatusWrapper> ();
+	protected  List<StatusWrapper> _toRemoveStatus = new List<StatusWrapper> ();
+	protected  List<StatusWrapper> _toAddStatus = new List<StatusWrapper> ();
+
+	protected int statusId = 0;
 
 	internal void Update()
 	{
-		List<Status> removedStatus = new List<Status> ();
-		foreach (Status CurrentStatu in _status)
+		foreach (StatusWrapper each in _toRemoveStatus)
 		{
-			if (CurrentStatu.ShouldTimeout(Time.deltaTime))
-			{
-				removedStatus.Add(CurrentStatu);
-			}
+			_status.Remove (each.id);
 		}
-		foreach (Status CurrentRemovedStatu in removedStatus)
+		_toRemoveStatus.Clear ();
+		foreach (StatusWrapper each in _toAddStatus)
 		{
-			_status.Remove(CurrentRemovedStatu);
+			_status.Add (each.id, each);
+		}
+		_toAddStatus.Clear ();
+
+
+		foreach (StatusWrapper CurrentStatu in _status.Values)
+		{
+			CurrentStatu.status.OnUpdate ();
+		}
+		CheckForTimeout ();
+
+
+		//After timeout, OnUpdate & OnRemove ( clear again )
+		foreach (StatusWrapper each in _toRemoveStatus)
+		{
+			_status.Remove (each.id);
+		}
+		_toRemoveStatus.Clear ();
+		foreach (StatusWrapper each in _toAddStatus)
+		{
+			_status.Add (each.id, each);
+		}
+		_toAddStatus.Clear ();
+	}
+
+	protected void CheckForTimeout()
+	{
+		foreach (StatusWrapper CurrentStatu in _status.Values)
+		{
+			if (CurrentStatu.ShouldTimeout (Time.deltaTime))
+			{
+				RemoveStatus (CurrentStatu);
+			}
 		}
 	}
 
-	internal void AddStatus (Status NewStatu)
+	internal int AddStatus (Status NewStatu)
 	{
-		if (NewStatu.Type == EStatus.Water)
-		{
-			foreach (Status CurrentStatu in _status)
-			{
-				if (CurrentStatu.Type == EStatus.Fire)
-				{
-					_status.Remove(CurrentStatu);
-				}
-			}
-		}
-		_status.Add(NewStatu);
-	}
+		StatusWrapper wrapper = new StatusWrapper (statusId, NewStatu);
+		statusId++;
 
-	internal void AddStatus (EStatus Type, float duration)
-	{
-		Status NewStatu = new Status();
-		NewStatu.Type = Type;
-		NewStatu.duration = duration;
-		_status.Add(NewStatu);
+		wrapper.status.OnApply ();
+		_toAddStatus.Add (wrapper);
+
+		return wrapper.id;
 	}
 
 	internal bool CheckStatus (EStatus Type)
 	{
-		foreach (Status CurrentStatu in _status)
+		foreach (StatusWrapper CurrentStatu in _status.Values)
 		{
-			if (CurrentStatu.Type == Type)
+			if (CurrentStatu.status.type == Type)
 			{
 				return true;
 			}
@@ -58,24 +79,53 @@ public class StatusManager
 		return false;
 	}
 
-	internal void RemoveStatus(Status a_appliedStatus)
+	#region Remove
+	internal void RemoveStatus(StatusWrapper a_appliedStatus)
 	{
-		_status.Remove (a_appliedStatus);
+		RemoveStatus (a_appliedStatus.id);
 	}
+
+	internal void RemoveStatus(int a_id)
+	{
+		if (_status.ContainsKey(a_id))
+		{
+			_toRemoveStatus.Add (_status[a_id]);
+			_status[a_id].status.OnRemove ();
+		}
+	}
+	#endregion
 
 	internal void ClearAllStatus(EStatus a_type)
 	{
-		List<Status> removedStatus = new List<Status> ();
-		foreach (Status CurrentStatus in _status)
+		foreach (StatusWrapper CurrentStatus in _status.Values)
 		{
-			if (CurrentStatus.Type == a_type)
+			if (CurrentStatus.status.type == a_type)
 			{
-				removedStatus.Add(CurrentStatus);
+				RemoveStatus (CurrentStatus);
 			}
 		}
-		foreach (Status CurrentRemovedStatu in removedStatus)
-		{
-			_status.Remove(CurrentRemovedStatu);
-		}
 	}
+}
+
+public class StatusWrapper
+{
+	public Status status;
+	public int id;
+	public float _timeElapsed = 0f;
+
+	internal StatusWrapper(int a_id, Status a_status)
+	{
+		id = a_id;
+		status = a_status;
+	}
+
+	internal virtual bool ShouldTimeout(float a_timeElapsed)
+	{
+		_timeElapsed += a_timeElapsed;
+		if (status.duration > 0f)
+			return _timeElapsed > status.duration;
+		else
+			return false;
+	}
+
 }
