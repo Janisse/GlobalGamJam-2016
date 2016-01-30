@@ -7,11 +7,11 @@ public class FallenPlatform : MonoBehaviour {
 	public Rigidbody2D Rigidbody = null;
 	public float delais = 0.5f;
 	float currentDelais = 0f;
-	bool Fallen = false;
+	protected bool Fallen = false;
 	public SpriteRenderer platformSprite = null;
 	public float FadeOutSpeed = 0.8f;
 	// Update is called once per frame
-	void Update ()
+	virtual protected void Update ()
 	{
 		if (Fallen)
 		{
@@ -28,7 +28,7 @@ public class FallenPlatform : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D col)
+	virtual internal void OnTriggerEnter2D(Collider2D col)
 	{
 		Fallen = true;
 	}
