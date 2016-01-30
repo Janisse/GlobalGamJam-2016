@@ -18,6 +18,7 @@ public class PlatformerMotor : MonoBehaviour
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
 	private float _jumpTimeElapsed = 0f;
+    protected float LastMove = 0f;
 
     private void Awake()
     {
@@ -51,9 +52,15 @@ public class PlatformerMotor : MonoBehaviour
 	#region Movement
 	public void Move(float move, bool a_jump)
     {
-        // Apply speed reduction if necessary.
-        move = move;
-
+		// Apply speed reduction if necessary.
+		// move = move;
+       	if(move != 0f)
+		{
+			LastMove = move;
+		}
+		else
+		{
+		}
         // The Speed animator parameter is set to the absolute value of the horizontal input.
         m_Anim.SetFloat("HorizontalSpeed", Mathf.Abs(move));
 
@@ -81,6 +88,7 @@ public class PlatformerMotor : MonoBehaviour
 		if (a_isJumping && (_isContinuousJump || m_Grounded) && _jumpTimeElapsed < m_maxJumpDuration)
 		{
     		_jumpTimeElapsed += Time.fixedDeltaTime;
+			_isContinuousJump = true;
 
 			m_Grounded = false;
 			m_Anim.SetBool ("Ground", false);
@@ -89,7 +97,7 @@ public class PlatformerMotor : MonoBehaviour
 			m_Rigidbody2D.velocity = velocity;
 		}
 
-		_isContinuousJump = a_isJumping;
+		_isContinuousJump = a_isJumping && _isContinuousJump;
 	}
 	#endregion
 
