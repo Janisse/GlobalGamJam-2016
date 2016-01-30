@@ -14,6 +14,6 @@ abstract public class Spell : MonoBehaviour
 	internal ESpells type = ESpells.NA;
 	internal virtual void LaunchEffect (PlayerCharacter Player)
 	{
-
+		Debug.Log("Launch "+type.ToString()+" Spell");
 	}
 }

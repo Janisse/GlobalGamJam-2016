@@ -6,6 +6,7 @@ public class PlatformerMotor : MonoBehaviour
 	[SerializeField] private Animator m_Anim;            // Reference to the player's animator component.
     [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
 	[SerializeField] private float m_JumpSpeed = 4f;                  // Amount of force added when the player jumps;
+	[SerializeField] private float m_WindJumpSpeed = 4f;                  // Amount of force added when the player jumps when he cast wind spell;
 	[SerializeField] private float m_maxJumpDuration = 0.2f;                  // Amount of force added when the player jumps;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
@@ -111,6 +112,12 @@ public class PlatformerMotor : MonoBehaviour
 		}
 
 		_isContinuousJump = a_isJumping && _isContinuousJump;
+		if (GameMode.instance.player.StatusManager.CheckStatus(EStatus.Wind))
+		{
+			Vector2 velocity = m_Rigidbody2D.velocity;
+			velocity.y = m_WindJumpSpeed;
+			m_Rigidbody2D.velocity = velocity;
+		}
 	}
 	#endregion
 
