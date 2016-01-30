@@ -26,7 +26,7 @@ public class GameMode : MonoBehaviour
 		{
 			//Pas cool
 			//Boom !!!
-			player.ChangePower();
+			player.ChangeSpell();
 			gaugeTime = 0f;
 			spellGauge.UpdateGauge (gaugeTime);
 		}

@@ -16,10 +16,13 @@ public class SpellManager : MonoBehaviour {
 			NewSpell = Spells[Random.Range(0,Spells.Count)];
 		}
 		while (CurrentSpell == NewSpell);
+		CurrentSpell = NewSpell;
 	}
 
 	internal void LaunchCurrentSpell ()
 	{
+		if (CurrentSpell == null)
+			RandomSpell();
 		CurrentSpell.LaunchEffect(Player);
 	}
 }

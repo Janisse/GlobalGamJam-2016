@@ -5,37 +5,30 @@ public class PlayerCharacter : MonoBehaviour
 {
 	#region properties
 	public GameMode gameMode = null;
+	public SpellManager SpellManager = null;
 	public int currentSpell = 0;
 	#endregion
 
 	#region Class methods
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
-
 	private void FixedUpdate()
 	{
 		//Change Power
 		if(Input.GetKey(KeyCode.A))
 		{
-			ChangePower ();
+			SpellManager.RandomSpell();
+		}
+		if(Input.GetKey(KeyCode.E))
+		{
+			SpellManager.LaunchCurrentSpell();
+			gameMode.gaugeTime = 0f;
 		}
 	}
 	#endregion
 
 	#region Player Methods
-	internal void ChangePower()
+	internal void ChangeSpell()
 	{
-		currentSpell = gameMode.GetNextSpell ();
-		Debug.Log ("Change Power");
+		SpellManager.RandomSpell();
 	}
 	#endregion
 }
