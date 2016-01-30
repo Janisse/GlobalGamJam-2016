@@ -67,6 +67,7 @@ public class GameMode : MonoBehaviour
 	internal void SpawnPlayer()
 	{
 		player.transform.position = currentCheckPoint.position;
+		player.GetComponent<Rigidbody2D> ().velocity = Vector3.zero;
 	}
 	#endregion
 }
