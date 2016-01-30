@@ -8,7 +8,7 @@ public class TriggerAction : MonoBehaviour
 	#endregion
 
 	#region Class methods
-	void Update()
+	void FixedUpdate()
 	{
 		if(isTrigger)
 			OnStay ();
@@ -18,20 +18,15 @@ public class TriggerAction : MonoBehaviour
 	#region TriggerAction Methods
 	internal virtual void OnEnter()
 	{
-		if(!isTrigger)
-			Debug.Log ("Enter");
 		isTrigger = true;
 	}
 
 	internal virtual void OnStay()
 	{
-		Debug.Log ("Stay");
 	}
 
 	internal virtual void OnExit()
 	{
-		if(isTrigger)
-			Debug.Log ("Exit");
 		isTrigger = false;
 	}
 	#endregion
