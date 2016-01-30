@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CheckPointAction : TriggerAction
+public class Collectible : TriggerAction
 {
 	#region TriggerAction Methods
 	internal override void OnEnter()
 	{
 		if (!isTrigger)
-			GameMode.instance.SetCheckpoint (transform);
+		{
+//			GameMode.instance.player.DoAction (); !!		//PlaceHolder
+			Debug.Log("Cling");
+			Destroy(this.gameObject);
+		}
 		isTrigger = true;
 	}
 	#endregion
