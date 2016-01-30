@@ -11,6 +11,7 @@ public class PlayerCharacter : MonoBehaviour
 	#endregion
 
 	#region Properties
+	internal StatusManager StatusManager = new StatusManager();
 	protected bool _shouldJump;
 	#endregion
 
