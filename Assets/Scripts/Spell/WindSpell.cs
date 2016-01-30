@@ -13,6 +13,6 @@ public class WindSpell : Spell
 	{
 		base.LaunchEffect (Player);
 		Debug.Log("Launch Wind Spell");
-		GameMode.instance.player.StatusManager.AddStatu(EStatus.Wind,duration);
+		GameMode.instance.player.StatusManager.AddStatus(EStatus.Wind,duration);
 	}
 }

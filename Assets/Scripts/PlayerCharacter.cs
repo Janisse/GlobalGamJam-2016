@@ -47,5 +47,10 @@ public class PlayerCharacter : MonoBehaviour
 	internal void ChangeSpell()
 	{
 	}
+
+	internal void Kill()
+	{
+		GameMode.instance.SpawnPlayer ();
+	}
 	#endregion
 }
