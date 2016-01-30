@@ -24,7 +24,7 @@ public class StatusManager
 		}
 	}
 
-	internal void AddStatu (Status NewStatu)
+	internal void AddStatus (Status NewStatu)
 	{
 		if (NewStatu.Type == EStatus.Water)
 		{
@@ -39,7 +39,7 @@ public class StatusManager
 		Status.Add(NewStatu);
 	}
 
-	internal void AddStatu (EStatus Type, float duration)
+	internal void AddStatus (EStatus Type, float duration)
 	{
 		Status NewStatu = new Status();
 		NewStatu.Type = Type;
@@ -47,7 +47,7 @@ public class StatusManager
 		Status.Add(NewStatu);
 	}
 
-	internal bool CheckStatu (EStatus Type)
+	internal bool CheckStatus (EStatus Type)
 	{
 		foreach (Status CurrentStatu in Status)
 		{

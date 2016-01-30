@@ -13,6 +13,6 @@ public class FireSpell : Spell
 	{
 		base.LaunchEffect (Player);
 		Debug.Log("Launch Fire Spell");
-		GameMode.instance.player.StatusManager.AddStatu(EStatus.Fire,duration);
+		GameMode.instance.player.StatusManager.AddStatus(EStatus.Fire,duration);
 	}
 }
