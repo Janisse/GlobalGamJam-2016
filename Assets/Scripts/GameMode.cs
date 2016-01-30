@@ -7,6 +7,7 @@ public class GameMode : MonoBehaviour
 	public PlayerCharacter player = null;
 	public Gauge spellGauge = null;
 	public float gaugeTime = 1f;
+	public Transform currentCheckPoint = null;
 
 	internal int nextSpell = 0;
 	#endregion
@@ -16,6 +17,7 @@ public class GameMode : MonoBehaviour
 	void Start ()
 	{
 		spellGauge.CreateGauges ();
+		SpawnPlayer ();
 	}
 	
 	// Update is called once per frame
@@ -45,6 +47,16 @@ public class GameMode : MonoBehaviour
 	{
 		gaugeTime = 0f;
 		return 0;	//next Spell
+	}
+
+	internal void SetCheckpoint(Transform a_checkPoint)
+	{
+		currentCheckPoint = a_checkPoint;
+	}
+
+	internal void SpawnPlayer()
+	{
+		player.transform.position = currentCheckPoint.position;
 	}
 	#endregion
 }
