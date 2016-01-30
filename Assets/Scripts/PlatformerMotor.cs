@@ -49,13 +49,20 @@ public class PlatformerMotor : MonoBehaviour
 
     public void Move(float move, bool jump)
     {
-        // Apply speed reduction if necessary.
-       // move = move;
-       if(move != 0f ) LastMove = move;
-       else
-       {
+		// Apply speed reduction if necessary.
+		// move = move;
+       	if(move != 0f)
+		{
+			LastMove = move;
+		}
+		else
+		{
+			foreach (Statu CurrentStatu in GameMode.instance.player.StatusManager.Status)
+			{
+				CurrentStatu.duration -= Time.deltaTime;
+			}
 
-       }
+		}
         // The Speed animator parameter is set to the absolute value of the horizontal input.
         m_Anim.SetFloat("HorizontalSpeed", Mathf.Abs(move));
 
