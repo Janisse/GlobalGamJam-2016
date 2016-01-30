@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FireSpell : Spell
 {
-
+	public float duration = 3f;
 	void Start ()
 	{
 		type = ESpells.Fire;
@@ -13,5 +13,6 @@ public class FireSpell : Spell
 	{
 		base.LaunchEffect (Player);
 		Debug.Log("Launch Fire Spell");
+		GameMode.instance.player.StatusManager.AddStatu(EStatus.Fire,duration);
 	}
 }
