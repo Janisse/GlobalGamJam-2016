@@ -3,8 +3,8 @@ using System.Collections;
 
 public class WindSpell : Spell
 {
-	internal override void LaunchEffect ()
+	internal override void LaunchEffect (GameObject Player)
 	{
-		base.LaunchEffect ();
+		base.LaunchEffect (Player);
 	}
 }
