@@ -3,19 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class StatusManager : MonoBehaviour
+public class StatusManager
 {
 	internal List<Status> Status = new List<Status> ();
 
-	void Update()
+	internal void Update()
 	{
+		List<Status> RemovedStatus = new List<Status> ();
 		foreach (Status CurrentStatu in Status)
 		{
 			CurrentStatu.duration -= Time.deltaTime;
 			if (CurrentStatu.duration <= 0f)
 			{
-				Status.Remove(CurrentStatu);
+				RemovedStatus.Add(CurrentStatu);
 			}
+		}
+		foreach (Status CurrentRemovedStatu in RemovedStatus)
+		{
+			Status.Remove(CurrentRemovedStatu);
 		}
 	}
 

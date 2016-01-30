@@ -6,7 +6,7 @@ public class PlayerCharacter : MonoBehaviour
 {
 	#region properties
 	public PlatformerMotor motor;
-	public SpellManager SpellManager = null;
+	public SpellManager SpellManager = new SpellManager();
 	#endregion
 
 	#region Properties
@@ -17,6 +17,7 @@ public class PlayerCharacter : MonoBehaviour
 	#region Class methods
 	private void Update()
 	{
+		StatusManager.Update();
 		//Change Power
 		if(Input.GetKey(KeyCode.R))
 		{
