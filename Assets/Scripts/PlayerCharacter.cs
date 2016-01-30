@@ -9,7 +9,6 @@ public class PlayerCharacter : MonoBehaviour
 	public SpellManager SpellManager = new SpellManager();
 	[Tooltip("delais avant de pouvoir relancer un sort (le fait de maintenir appuyer n'envois pas les sorts en boucle)")]
 	public float DelaySpell = 1f;
-	public float DelayJump = 0.2f;
 	#endregion
 
 	#region Properties
@@ -42,8 +41,8 @@ public class PlayerCharacter : MonoBehaviour
 			currentDelay -= Time.deltaTime;
 		}
 		// Read the jump input in Update so button presses aren't missed.
-		_shouldJump = CrossPlatformInputManager.GetButtonDown("Jump") || _shouldJump;
-		_shouldJump = (! (CrossPlatformInputManager.GetButtonUp("Jump") || motor.Rigidbody.velocity.y < 0f)) && _shouldJump;
+
+		_shouldJump = CrossPlatformInputManager.GetButton("Jump");
 	}
 
 	private void FixedUpdate()
