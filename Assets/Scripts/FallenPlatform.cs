@@ -8,6 +8,8 @@ public class FallenPlatform : MonoBehaviour {
 	public float delais = 0.5f;
 	float currentDelais = 0f;
 	bool Fallen = false;
+	public SpriteRenderer platformSprite = null;
+	public float FadeOutSpeed = 0.8f;
 	// Update is called once per frame
 	void Update ()
 	{
@@ -18,6 +20,10 @@ public class FallenPlatform : MonoBehaviour {
 			{
 				Colid.enabled = false;
 				Rigidbody.isKinematic = false;
+				Color Color = platformSprite.color;
+				Color.a -= FadeOutSpeed*Time.deltaTime;
+				platformSprite.color = Color;
+				if(Color.a <= 0f) Destroy(gameObject);
 			}
 		}
 	}
