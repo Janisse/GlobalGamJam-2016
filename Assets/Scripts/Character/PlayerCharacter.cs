@@ -113,10 +113,12 @@ public class PlayerCharacter : MonoBehaviour
 
 	internal void Respawn()
 	{
+		
 		CamEffect.SpawnEffect();
 		GameMode.instance.ResetableManager.ResetAll ();
 		GameMode.instance.SpawnPlayer ();
 		GameMode.instance.gaugeTime = 0f;
+		motor.modelAnimator.Reset ();
 	}
 	#endregion
 }

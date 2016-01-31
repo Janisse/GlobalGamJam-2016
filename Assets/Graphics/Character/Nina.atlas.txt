@@ -5,163 +5,219 @@ format: RGBA8888
 filter: Linear,Linear
 repeat: none
 ArmL
+  rotate: true
+  xy: 400, 179
+  size: 88, 86
+  orig: 88, 86
+  offset: 0, 0
+  index: -1
+ArmL_Tattoo
   rotate: false
-  xy: 338, 469
+  xy: 237, 50
   size: 88, 86
   orig: 88, 86
   offset: 0, 0
   index: -1
 ArmR
   rotate: false
-  xy: 338, 557
+  xy: 370, 269
+  size: 92, 94
+  orig: 92, 94
+  offset: 0, 0
+  index: -1
+ArmR_Tattoo
+  rotate: false
+  xy: 306, 163
   size: 92, 94
   orig: 92, 94
   offset: 0, 0
   index: -1
 Body
   rotate: false
-  xy: 198, 408
+  xy: 547, 779
   size: 138, 243
   orig: 138, 243
   offset: 0, 0
   index: -1
 Eye Close
-  rotate: false
-  xy: 432, 579
+  rotate: true
+  xy: 830, 779
   size: 39, 72
   orig: 39, 72
   offset: 0, 0
   index: -1
 Eye Open
   rotate: true
-  xy: 198, 367
+  xy: 547, 738
   size: 39, 70
   orig: 39, 70
   offset: 0, 0
   index: -1
 Eyebrow
   rotate: true
-  xy: 1006, 951
+  xy: 509, 509
   size: 34, 16
   orig: 34, 16
   offset: 0, 0
   index: -1
 FootL
-  rotate: true
-  xy: 890, 829
+  rotate: false
+  xy: 351, 485
   size: 156, 58
   orig: 156, 58
   offset: 0, 0
   index: -1
 FootR
-  rotate: true
-  xy: 890, 829
+  rotate: false
+  xy: 351, 485
   size: 156, 58
   orig: 156, 58
   offset: 0, 0
   index: -1
 Hair BG
   rotate: false
-  xy: 351, 717
+  xy: 2, 86
   size: 136, 268
   orig: 136, 268
   offset: 0, 0
   index: -1
 Hair Top
   rotate: false
-  xy: 2, 382
+  xy: 351, 753
   size: 194, 269
   orig: 194, 269
   offset: 0, 0
   index: -1
 HandL
+  rotate: false
+  xy: 937, 818
+  size: 67, 61
+  orig: 67, 61
+  offset: 0, 0
+  index: -1
+HandL_Opn
   rotate: true
-  xy: 824, 592
+  xy: 327, 78
+  size: 83, 64
+  orig: 83, 64
+  offset: 0, 0
+  index: -1
+HandL_Opn_Tattoo
+  rotate: true
+  xy: 393, 78
+  size: 83, 64
+  orig: 83, 64
+  offset: 0, 0
+  index: -1
+HandL_Tattoo
+  rotate: false
+  xy: 534, 675
   size: 67, 61
   orig: 67, 61
   offset: 0, 0
   index: -1
 HandR
   rotate: true
-  xy: 824, 661
+  xy: 327, 2
+  size: 74, 60
+  orig: 74, 60
+  offset: 0, 0
+  index: -1
+HandR_Open
+  rotate: false
+  xy: 140, 74
+  size: 95, 62
+  orig: 95, 62
+  offset: 0, 0
+  index: -1
+HandR_Open_Tattoo
+  rotate: true
+  xy: 306, 259
+  size: 95, 62
+  orig: 95, 62
+  offset: 0, 0
+  index: -1
+HandR_Tattoo
+  rotate: true
+  xy: 389, 2
   size: 74, 60
   orig: 74, 60
   offset: 0, 0
   index: -1
 Head
   rotate: false
-  xy: 2, 653
+  xy: 2, 690
+  size: 347, 332
+  orig: 347, 332
+  offset: 0, 0
+  index: -1
+Head_Tattoo
+  rotate: false
+  xy: 2, 356
   size: 347, 332
   orig: 347, 332
   offset: 0, 0
   index: -1
 LegL
   rotate: false
-  xy: 489, 769
+  xy: 140, 138
   size: 164, 216
   orig: 164, 216
   offset: 0, 0
   index: -1
 LegR
   rotate: false
-  xy: 2, 174
+  xy: 351, 545
   size: 181, 206
   orig: 181, 206
   offset: 0, 0
   index: -1
 Neck
   rotate: true
-  xy: 338, 415
+  xy: 131, 20
   size: 52, 87
   orig: 52, 87
   offset: 0, 0
   index: -1
 ShoulderL
   rotate: true
-  xy: 351, 653
+  xy: 2, 22
+  size: 62, 127
+  orig: 62, 127
+  offset: 0, 0
+  index: -1
+ShoulderL_Tattoo
+  rotate: true
+  xy: 351, 365
   size: 62, 127
   orig: 62, 127
   offset: 0, 0
   index: -1
 ShoulderR
   rotate: false
-  xy: 950, 844
+  xy: 937, 881
+  size: 54, 141
+  orig: 54, 141
+  offset: 0, 0
+  index: -1
+ShoulderR_Tattoo
+  rotate: true
+  xy: 351, 429
   size: 54, 141
   orig: 54, 141
   offset: 0, 0
   index: -1
 UpperlegL
-  rotate: true
-  xy: 655, 737
+  rotate: false
+  xy: 830, 820
   size: 105, 202
   orig: 105, 202
   offset: 0, 0
   index: -1
 UpperlegR
-  rotate: true
-  xy: 655, 844
+  rotate: false
+  xy: 687, 789
   size: 141, 233
   orig: 141, 233
-  offset: 0, 0
-  index: -1
-warning_1
-  rotate: false
-  xy: 2, 2
-  size: 161, 170
-  orig: 161, 170
-  offset: 0, 0
-  index: -1
-warning_2
-  rotate: false
-  xy: 489, 597
-  size: 161, 170
-  orig: 161, 170
-  offset: 0, 0
-  index: -1
-warning_3
-  rotate: true
-  xy: 652, 574
-  size: 161, 170
-  orig: 161, 170
   offset: 0, 0
   index: -1
