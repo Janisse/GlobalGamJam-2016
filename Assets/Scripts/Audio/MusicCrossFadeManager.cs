@@ -3,13 +3,27 @@ using System.Collections;
 
 public class MusicCrossFadeManager : MonoBehaviour
 {
+	public float ratio = 0f;
     public AudioSourceVolume[] settings = null;
+
+	void Start()
+	{
+		foreach (AudioSourceVolume each in settings)
+		{
+			each.src.Play ();
+		}
+	}
+
+	void Update()
+	{
+		SetRatio (ratio);
+	}
 
     internal void SetRatio(float a_ratio)
     {
         foreach (AudioSourceVolume each in settings)
         {
-            SetRatio(a_ratio);
+			each.SetRatio(a_ratio);
         }
     }
 }

@@ -7,7 +7,7 @@ public class InstaKillAction : TriggerAction
 	internal override void OnEnter()
 	{
 		if (!isTrigger)
-			GameMode.instance.player.Kill();
+			GameMode.instance.player.InstantKill();
 		isTrigger = true;
 	}
 	#endregion
