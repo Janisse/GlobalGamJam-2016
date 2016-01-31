@@ -10,7 +10,7 @@ public class GameMode : MonoBehaviour
 	public float gaugeTime = 1f;
 	public Transform LevelStart = null;
 	public SpellManager spellManager = null;
-
+	public AudioSource SpellChange = null;
 
 	internal Transform currentCheckPoint = null;
 	internal int nextSpell = 0;
@@ -50,6 +50,7 @@ public class GameMode : MonoBehaviour
 			if(spellGauge.UpdateGauge (gaugeTime))
 			{
 				spellManager.RandomSpell();
+				SpellChange.Play();
 			}
 		}
 	}

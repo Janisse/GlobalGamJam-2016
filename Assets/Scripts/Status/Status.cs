@@ -127,6 +127,15 @@ public class FireStatus : Status
 	internal override void OnRemove ()
 	{
 		base.OnRemove ();
+		foreach (Spell S in  GameMode.instance.spellManager.Spells)
+		{
+			if (S.type == ESpells.Fire)
+			{
+				if (S.SoundLong != null)
+					S.SoundLong.Stop();
+				break;
+			}
+		}
 	}
 }
 
