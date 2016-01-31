@@ -9,10 +9,10 @@ public class StringPlatform : FallenPlatform {
 	{
 		if (Fallen)
 		{
-			Color Color = String.color;
-			Color.a -= FadeOutSpeed*Time.deltaTime;
-			String.color = Color;
-			if(Color.a <= 0f) String.gameObject.SetActive(false);
+			Color Colortemp = String.color;
+			Colortemp.a -= FadeOutSpeed*Time.deltaTime;
+			String.color = Colortemp;
+			if(Colortemp.a <= 0f) String.gameObject.SetActive(false);
 		}
 		base.Update ();
 	}
@@ -28,9 +28,9 @@ public class StringPlatform : FallenPlatform {
 
 	internal override void Reset ()
 	{
-		Color Color = String.color;
-		Color.a =255f;
-		String.color = Color;
+		Color Colortemp = String.color;
+		Colortemp.a = 1f;
+		String.color = Colortemp;
 		String.gameObject.SetActive(true);
 		base.Reset ();
 	}

@@ -38,9 +38,9 @@ public class FallenPlatform : Resetable {
 	}
 	internal override void Reset ()
 	{
-		Color Color = platformSprite.color;
-		Color.a = 255f;
-		platformSprite.color = Color;
+		Color ColorTemp = platformSprite.color;
+		ColorTemp.a = 1f;
+		platformSprite.color = ColorTemp;
 		Colid.enabled = true;
 		Rigidbody.isKinematic = true;
 		Fallen = false;
