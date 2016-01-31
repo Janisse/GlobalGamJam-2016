@@ -9,7 +9,8 @@ public class PlayerCharacter : MonoBehaviour
 	public SpellManager spellManager = null;
 	[Tooltip("delais avant de pouvoir relancer un sort (le fait de maintenir appuyer n'envois pas les sorts en boucle)")]
 	public float DelaySpell = 1f;
-	public float DelayKill = 2f;
+	public float DelayKill = 2f; 
+	public CameraEffect CamEffect = null;
 	#endregion
 
 	#region Properties
@@ -85,6 +86,7 @@ public class PlayerCharacter : MonoBehaviour
 
 	internal void Respawn()
 	{
+		CamEffect.SpawnEffect();
 		GameMode.instance.ResetableManager.ResetAll ();
 		GameMode.instance.SpawnPlayer ();
 		GameMode.instance.gaugeTime = 0f;
