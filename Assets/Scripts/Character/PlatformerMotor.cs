@@ -127,4 +127,9 @@ public class PlatformerMotor : MonoBehaviour
 		transform.localScale = theScale;
 	}
 	#endregion
+
+	internal void SetAnim (string arg)
+	{
+		m_Anim.SetTrigger(arg);
+	}
 }
