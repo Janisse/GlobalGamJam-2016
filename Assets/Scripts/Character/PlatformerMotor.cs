@@ -67,8 +67,6 @@ public class PlatformerMotor : MonoBehaviour
 			move = -1;
 		}
 		
-
-		
         // The Speed animator parameter is set to the absolute value of the horizontal input.
         m_Anim.SetFloat("HorizontalSpeed", Mathf.Abs(move));
 

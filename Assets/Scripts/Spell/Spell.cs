@@ -5,7 +5,9 @@ public enum ESpells
 {
 	NA,
 	Wind,
-	Fire
+	Fire,
+	Nausea,
+	BunnyHop
 }
 
 abstract public class Spell : MonoBehaviour

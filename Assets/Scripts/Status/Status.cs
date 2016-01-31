@@ -5,7 +5,9 @@ public enum EStatus
 {
 	Fire,
 	Wet,
-	Wind
+	Wind,
+	Nausea,
+	BunnyHop
 }
 
 [System.Serializable]
@@ -56,6 +58,14 @@ public class Status
 
 			case EStatus.Fire:
 			val = new FireStatus (a_type, a_duration);
+			break;
+
+			case EStatus.Nausea:
+			val = new NauseaStatus (a_type, a_duration);
+			break;
+
+			case EStatus.BunnyHop:
+			val = new BunnyHopStatus (a_type, a_duration);
 			break;
 
 			default:
@@ -117,5 +127,53 @@ public class FireStatus : Status
 	internal override void OnRemove ()
 	{
 		base.OnRemove ();
+	}
+}
+
+public class NauseaStatus : Status
+{
+	internal NauseaStatus(EStatus a_type, float a_duration) : base(a_type, a_duration)
+	{
+	}
+
+	internal override void OnApply ()
+	{
+		base.OnApply ();
+//		GameMode.instance.player.motor.inversMove = -1f;
+	}
+
+	internal override void OnUpdate ()
+	{
+		base.OnUpdate ();
+	}
+
+	internal override void OnRemove ()
+	{
+		base.OnRemove ();
+//		GameMode.instance.player.motor.inversMove = 1f;
+	}
+}
+
+public class BunnyHopStatus : Status
+{
+	internal BunnyHopStatus(EStatus a_type, float a_duration) : base(a_type, a_duration)
+	{
+	}
+
+	internal override void OnApply ()
+	{
+		base.OnApply ();
+//		GameMode.instance.player.motor.isBunnyHop = true;
+	}
+
+	internal override void OnUpdate ()
+	{
+		base.OnUpdate ();
+	}
+
+	internal override void OnRemove ()
+	{
+		base.OnRemove ();
+//		GameMode.instance.player.motor.isBunnyHop = false;
 	}
 }

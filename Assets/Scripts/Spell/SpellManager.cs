@@ -27,5 +27,6 @@ public class SpellManager : MonoBehaviour {
 		if (CurrentSpell == null)
 			RandomSpell();
 		CurrentSpell.LaunchEffect(Player);
+		RandomSpell();
 	}
 }

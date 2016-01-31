@@ -14,16 +14,16 @@ public class FireSpell : Spell
 	{
 		base.LaunchEffect (Player);
 		GameMode.instance.player.StatusManager.AddStatus(Status.Make(EStatus.Fire, duration));	//Add FireFX
-
-		if (Player.motor.m_FacingRight)
-		{
-			GameObject fireBall = (GameObject)Instantiate(fireBallPrefab, Player.transform.position + Vector3.right * 1.5f, Quaternion.identity);
-			(fireBall.GetComponent<FireBall> ()).direction = new Vector3 (1f, 0f, 0f);
-		}
-		else
-		{
-			GameObject fireBall = (GameObject)Instantiate(fireBallPrefab, Player.transform.position + Vector3.left * 1.5f, Quaternion.identity);
-			(fireBall.GetComponent<FireBall> ()).direction = new Vector3 (-1f, 0f, 0f);
-		}
+//
+//		if (Player.motor.m_FacingRight)
+//		{
+//			GameObject fireBall = (GameObject)Instantiate(fireBallPrefab, Player.transform.position + Vector3.right * 1.5f, Quaternion.identity);
+//			(fireBall.GetComponent<FireBall> ()).direction = new Vector3 (1f, 0f, 0f);
+//		}
+//		else
+//		{
+//			GameObject fireBall = (GameObject)Instantiate(fireBallPrefab, Player.transform.position + Vector3.left * 1.5f, Quaternion.identity);
+//			(fireBall.GetComponent<FireBall> ()).direction = new Vector3 (-1f, 0f, 0f);
+//		}
 	}
 }
