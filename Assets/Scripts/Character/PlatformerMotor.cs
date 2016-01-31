@@ -9,6 +9,7 @@ public class PlatformerMotor : MonoBehaviour
 	[SerializeField] private float m_WindJumpSpeed = 4f;                  // Amount of force added when the player jumps when he cast wind spell;
 	[SerializeField] private float m_maxJumpDuration = 0.2f;                  // Amount of force added when the player jumps;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+	public SkeletonAnimator modelAnimator = null;
 	[SerializeField] private AudioSourceBatch JumpSound = null;                  // A mask determining what is ground to the character
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
@@ -41,6 +42,9 @@ public class PlatformerMotor : MonoBehaviour
         {
 			if (colliders [i].gameObject != gameObject)
 			{
+				if (!m_Grounded) {
+					modelAnimator.Reset ();
+				}
 				m_Grounded = true;
 				_jumpTimeElapsed = 0f;
 			}

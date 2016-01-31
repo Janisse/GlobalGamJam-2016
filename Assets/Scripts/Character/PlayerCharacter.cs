@@ -119,6 +119,7 @@ public class PlayerCharacter : MonoBehaviour
 		GameMode.instance.ResetableManager.ResetAll ();
 		GameMode.instance.SpawnPlayer ();
 		GameMode.instance.gaugeTime = 0f;
+		motor.modelAnimator.Reset ();
 	}
 	#endregion
 }
