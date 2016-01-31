@@ -9,6 +9,7 @@ public class PlatformerMotor : MonoBehaviour
 	[SerializeField] private float m_WindJumpSpeed = 4f;                  // Amount of force added when the player jumps when he cast wind spell;
 	[SerializeField] private float m_maxJumpDuration = 0.2f;                  // Amount of force added when the player jumps;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+	[SerializeField] private AudioSourceBatch JumpSound = null;                  // A mask determining what is ground to the character
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     const float k_GroundedRadius = .1f; // Radius of the overlap circle to determine if grounded
@@ -95,7 +96,8 @@ public class PlatformerMotor : MonoBehaviour
 		{
     		_jumpTimeElapsed += Time.fixedDeltaTime;
 			_isContinuousJump = true;
-
+			if (m_Grounded)
+				JumpSound.Play();
 			m_Grounded = false;
 			m_Anim.SetBool ("Ground", false);
 			Vector2 velocity = m_Rigidbody2D.velocity;

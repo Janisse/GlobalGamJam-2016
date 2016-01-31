@@ -10,6 +10,7 @@ public class FallenPlatform : Resetable {
 	protected bool Fallen = false;
 	public SpriteRenderer platformSprite = null;
 	public float FadeOutSpeed = 0.8f;
+	public AudioSource SoundFall = null;
 	// Update is called once per frame
 	virtual protected void Update ()
 	{
@@ -33,6 +34,8 @@ public class FallenPlatform : Resetable {
 		PlayerCharacter PC = col.gameObject.GetComponent<PlayerCharacter>();
 		if(PC != null)
 		{
+
+			SoundFall.Play();
 			Fallen = true;
 		}
 	}
