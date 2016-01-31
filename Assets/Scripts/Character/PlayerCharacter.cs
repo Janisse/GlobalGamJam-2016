@@ -6,7 +6,7 @@ public class PlayerCharacter : MonoBehaviour
 {
 	#region inspector properties
 	public PlatformerMotor motor;
-	public SpellManager SpellManager = new SpellManager();
+	public SpellManager spellManager = null;
 	[Tooltip("delais avant de pouvoir relancer un sort (le fait de maintenir appuyer n'envois pas les sorts en boucle)")]
 	public float DelaySpell = 1f;
 	public float DelayKill = 2f;
@@ -41,15 +41,9 @@ public class PlayerCharacter : MonoBehaviour
 
 		if(currentDelay <= 0)
 		{
-			//Change Power
-			if(Input.GetKey(KeyCode.R))
-			{
-				SpellManager.RandomSpell();
-			}
-
 			if(Input.GetKey(KeyCode.E))
 			{
-				SpellManager.LaunchCurrentSpell();
+				spellManager.LaunchCurrentSpell();
 				currentDelay = DelaySpell;
 				GameMode.instance.gaugeTime = -DelaySpell;
 			}
@@ -76,10 +70,6 @@ public class PlayerCharacter : MonoBehaviour
 	#endregion
 
 	#region Player Methods
-	internal void ChangeSpell()
-	{
-	}
-
 	internal void Kill()
 	{
 		motor.SetAnim("Death");
