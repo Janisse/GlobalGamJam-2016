@@ -12,14 +12,15 @@ public class WinAction : TriggerAction
 		{
 			triggerOnlyOnce = true;
 			soundWin.Play();
+			GameMode.instance.fadeToBlack.Play ();
 			Invoke ("Win", 2f);
+			gameObject.SetActive (false);
 		}
 		isTrigger = true;
 	}
 		
 	public void Win()
 	{
-		Debug.Log ("Load scene");
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("End", UnityEngine.SceneManagement.LoadSceneMode.Single);
 	}
 	#endregion

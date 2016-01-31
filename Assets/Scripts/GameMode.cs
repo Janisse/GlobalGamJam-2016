@@ -11,6 +11,7 @@ public class GameMode : MonoBehaviour
 	public Transform LevelStart = null;
 	public SpellManager spellManager = null;
 	public AudioSource SpellChange = null;
+	public FadeIn fadeToBlack = null;
 
 	internal Transform currentCheckPoint = null;
 	internal int nextSpell = 0;

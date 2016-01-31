@@ -9,12 +9,24 @@ public class CameraController : MonoBehaviour
 	#endregion
 
 	#region class Methods
+	void Awake()
+	{
+		SnapToTarget();
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
-		transform.position += new Vector3 (	(target.position.x - transform.position.x) * moveSpeed,
+		transform.position += new Vector3 ( (target.position.x - transform.position.x) * moveSpeed,
 											(target.position.y - transform.position.y) * moveSpeed,
 											0f);
+	}
+
+	internal void SnapToTarget()
+	{
+		transform.position = new Vector3 (target.position.x,
+										target.position.y,
+										transform.position.z);
 	}
 	#endregion
 }
