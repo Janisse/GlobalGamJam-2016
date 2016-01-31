@@ -11,6 +11,8 @@ public class PlayerCharacter : MonoBehaviour
 	public float DelaySpell = 1f;
 	public float DelayKill = 2f; 
 	public CameraEffect CamEffect = null;
+	public ParticleSystem fireParticles = null;
+	public ParticleSystem WindParticles = null;
 	#endregion
 
 	#region Properties
@@ -23,9 +25,25 @@ public class PlayerCharacter : MonoBehaviour
 	#endregion
 
 	#region Class methods
+	void Start()
+	{
+		fireParticles.Stop ();
+		WindParticles.Stop ();
+	}
+
 	private void Update()
 	{
 		StatusManager.Update();
+
+		if(StatusManager.CheckStatus (EStatus.Fire) && !fireParticles.isPlaying)
+			fireParticles.Play (true);
+		else
+			fireParticles.Stop (true);
+
+		if(StatusManager.CheckStatus (EStatus.Wind) && !WindParticles.isPlaying)
+			WindParticles.Play (true);
+		else
+			WindParticles.Stop (true);
 
 		if(KillMePlease)
 		{
@@ -55,7 +73,10 @@ public class PlayerCharacter : MonoBehaviour
 		}
 		// Read the jump input in Update so button presses aren't missed.
 
-		_shouldJump = CrossPlatformInputManager.GetButton("Jump");
+		if (StatusManager.CheckStatus (EStatus.BunnyHop))
+			_shouldJump = true;
+		else
+			_shouldJump = CrossPlatformInputManager.GetButton("Jump");
 	}
 
 	private void FixedUpdate()
@@ -64,7 +85,12 @@ public class PlayerCharacter : MonoBehaviour
 		float h = CrossPlatformInputManager.GetAxis("Horizontal");
 		// Pass all parameters to the character control script.
 		if(!FreezeInput)
-			motor.Move(h, _shouldJump);
+		{
+			if (StatusManager.CheckStatus (EStatus.Nausea))
+				motor.Move(-h, _shouldJump);
+			else
+				motor.Move(h, _shouldJump);
+		}
 		else
 			motor.Move(0f, false);
 	}

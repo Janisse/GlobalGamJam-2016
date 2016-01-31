@@ -20,7 +20,8 @@ public class StringPlatform : FallenPlatform {
 	internal override void OnTriggerEnter2D (Collider2D col)
 	{
 		PlayerCharacter PC = col.gameObject.GetComponent<PlayerCharacter>();
-		if(PC != null && PC.StatusManager.CheckStatus(EStatus.Fire))
+		if((PC != null && PC.StatusManager.CheckStatus(EStatus.Fire))
+			|| col.transform.tag == "FireBall")
 		{
 			Fallen = true;
 		}
