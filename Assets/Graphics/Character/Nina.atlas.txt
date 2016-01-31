@@ -1,0 +1,146 @@
+
+Nina.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ArmL
+  rotate: false
+  xy: 834, 130
+  size: 88, 86
+  orig: 88, 86
+  offset: 0, 0
+  index: -1
+ArmR
+  rotate: false
+  xy: 740, 122
+  size: 92, 94
+  orig: 92, 94
+  offset: 0, 0
+  index: -1
+Body
+  rotate: true
+  xy: 730, 361
+  size: 138, 243
+  orig: 138, 243
+  offset: 0, 0
+  index: -1
+Eye Close
+  rotate: false
+  xy: 975, 427
+  size: 39, 72
+  orig: 39, 72
+  offset: 0, 0
+  index: -1
+Eye Open
+  rotate: false
+  xy: 924, 146
+  size: 39, 70
+  orig: 39, 70
+  offset: 0, 0
+  index: -1
+Eyebrow
+  rotate: true
+  xy: 547, 257
+  size: 34, 16
+  orig: 34, 16
+  offset: 0, 0
+  index: -1
+FootL
+  rotate: true
+  xy: 272, 9
+  size: 156, 58
+  orig: 156, 58
+  offset: 0, 0
+  index: -1
+FootR
+  rotate: true
+  xy: 272, 9
+  size: 156, 58
+  orig: 156, 58
+  offset: 0, 0
+  index: -1
+Hair BG
+  rotate: true
+  xy: 2, 29
+  size: 136, 268
+  orig: 136, 268
+  offset: 0, 0
+  index: -1
+Hair Top
+  rotate: false
+  xy: 351, 230
+  size: 194, 269
+  orig: 194, 269
+  offset: 0, 0
+  index: -1
+HandL
+  rotate: false
+  xy: 740, 59
+  size: 67, 61
+  orig: 67, 61
+  offset: 0, 0
+  index: -1
+HandR
+  rotate: false
+  xy: 475, 2
+  size: 74, 60
+  orig: 74, 60
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 2, 167
+  size: 347, 332
+  orig: 347, 332
+  offset: 0, 0
+  index: -1
+LegL
+  rotate: true
+  xy: 351, 64
+  size: 164, 216
+  orig: 164, 216
+  offset: 0, 0
+  index: -1
+LegR
+  rotate: false
+  xy: 547, 293
+  size: 181, 206
+  orig: 181, 206
+  offset: 0, 0
+  index: -1
+Neck
+  rotate: false
+  xy: 676, 204
+  size: 52, 87
+  orig: 52, 87
+  offset: 0, 0
+  index: -1
+ShoulderL
+  rotate: false
+  xy: 676, 75
+  size: 62, 127
+  orig: 62, 127
+  offset: 0, 0
+  index: -1
+ShoulderR
+  rotate: true
+  xy: 332, 8
+  size: 54, 141
+  orig: 54, 141
+  offset: 0, 0
+  index: -1
+UpperlegL
+  rotate: false
+  xy: 569, 89
+  size: 105, 202
+  orig: 105, 202
+  offset: 0, 0
+  index: -1
+UpperlegR
+  rotate: true
+  xy: 730, 218
+  size: 141, 233
+  orig: 141, 233
+  offset: 0, 0
+  index: -1
