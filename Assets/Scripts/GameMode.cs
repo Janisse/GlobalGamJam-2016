@@ -9,6 +9,7 @@ public class GameMode : MonoBehaviour
 	public Gauge spellGauge = null;
 	public float gaugeTime = 1f;
 	public Transform LevelStart = null;
+	public SpellManager spellManager = null;
 
 
 	internal Transform currentCheckPoint = null;
@@ -40,7 +41,7 @@ public class GameMode : MonoBehaviour
 		{
 			//Pas cool
 			//Boom !!!
-			player.ChangeSpell();
+			spellManager.LaunchCurrentSpell ();
 			gaugeTime = 0f;
 			spellGauge.UpdateGauge (gaugeTime);
 		}
@@ -48,7 +49,7 @@ public class GameMode : MonoBehaviour
 		{
 			if(spellGauge.UpdateGauge (gaugeTime))
 			{
-//				nextSpell = rnd;	//next Spell
+				spellManager.RandomSpell();
 			}
 		}
 	}
