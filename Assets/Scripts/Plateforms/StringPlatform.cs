@@ -12,7 +12,7 @@ public class StringPlatform : FallenPlatform {
 			Color Colortemp = String.color;
 			Colortemp.a -= FadeOutSpeed*Time.deltaTime;
 			String.color = Colortemp;
-			if(!platformSprite.gameObject.activeSelf && Colortemp.a <= 0f) String.gameObject.SetActive(false);
+			if(Colortemp.a <= 0f) String.gameObject.SetActive(false);
 		}
 		base.Update ();
 	}
@@ -20,7 +20,8 @@ public class StringPlatform : FallenPlatform {
 	internal override void OnTriggerEnter2D (Collider2D col)
 	{
 		PlayerCharacter PC = col.gameObject.GetComponent<PlayerCharacter>();
-		if(PC != null && PC.StatusManager.CheckStatus(EStatus.Fire))
+		if((PC != null && PC.StatusManager.CheckStatus(EStatus.Fire))
+			|| col.transform.tag == "FireBall")
 		{
 			Fallen = true;
 		}

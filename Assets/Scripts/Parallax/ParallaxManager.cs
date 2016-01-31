@@ -10,10 +10,10 @@ public class ParallaxManager : MonoBehaviour
 
 	internal void SetParallaxOffset(Vector2 a_offset)
 	{
-		/*foreach(ParallaxLayer each in layers)
+		foreach(ParallaxLayer each in layers)
 		{
 			each.SetParallaxOffset (a_offset);
-		}*/
+		}
 	}
 }
 

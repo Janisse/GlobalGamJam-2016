@@ -29,6 +29,7 @@ public class PlayerCharacter : MonoBehaviour
 	{
 		fireParticles.Stop ();
 		WindParticles.Stop ();
+		spellManager.RandomSpell ();
 	}
 
 	private void Update()
@@ -36,14 +37,14 @@ public class PlayerCharacter : MonoBehaviour
 		StatusManager.Update();
 
 		if(StatusManager.CheckStatus (EStatus.Fire) && !fireParticles.isPlaying)
-			fireParticles.Play (true);
-		else
-			fireParticles.Stop (true);
+			fireParticles.Play ();
+		else if(!StatusManager.CheckStatus (EStatus.Fire))
+			fireParticles.Stop ();
 
 		if(StatusManager.CheckStatus (EStatus.Wind) && !WindParticles.isPlaying)
-			WindParticles.Play (true);
-		else
-			WindParticles.Stop (true);
+			WindParticles.Play ();
+		else if(!StatusManager.CheckStatus (EStatus.Wind))
+			WindParticles.Stop ();
 
 		if(KillMePlease)
 		{
