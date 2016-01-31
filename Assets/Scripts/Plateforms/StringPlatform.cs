@@ -12,16 +12,26 @@ public class StringPlatform : FallenPlatform {
 			Color Color = String.color;
 			Color.a -= FadeOutSpeed*Time.deltaTime;
 			String.color = Color;
-			if(Color.a <= 0f) Destroy(gameObject);
+			if(Color.a <= 0f) String.gameObject.SetActive(false);
 		}
 		base.Update ();
 	}
 
 	internal override void OnTriggerEnter2D (Collider2D col)
 	{
-		if( col.gameObject.GetComponent<PlayerCharacter>().StatusManager.CheckStatus(EStatus.Fire))
+		PlayerCharacter PC = col.gameObject.GetComponent<PlayerCharacter>();
+		if(PC != null && PC.StatusManager.CheckStatus(EStatus.Fire))
 		{
-			base.OnTriggerEnter2D(col);
+			Fallen = true;
 		}
+	}
+
+	internal override void Reset ()
+	{
+		Color Color = String.color;
+		Color.a =255f;
+		String.color = Color;
+		String.gameObject.SetActive(true);
+		base.Reset ();
 	}
 }

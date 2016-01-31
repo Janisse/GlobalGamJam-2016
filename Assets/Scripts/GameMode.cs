@@ -4,10 +4,12 @@ using System.Collections;
 public class GameMode : MonoBehaviour
 {
 	#region properties
+	public ResetableManager ResetableManager = null;
 	public PlayerCharacter player = null;
 	public Gauge spellGauge = null;
 	public float gaugeTime = 1f;
 	public Transform LevelStart = null;
+
 
 	internal Transform currentCheckPoint = null;
 	internal int nextSpell = 0;

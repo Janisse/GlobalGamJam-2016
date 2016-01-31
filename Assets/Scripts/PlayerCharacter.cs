@@ -61,6 +61,7 @@ public class PlayerCharacter : MonoBehaviour
 
 	internal void Kill()
 	{
+		GameMode.instance.ResetableManager.ResetAll ();
 		GameMode.instance.SpawnPlayer ();
 	}
 	#endregion

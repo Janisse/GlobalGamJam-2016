@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FallenPlatform : MonoBehaviour {
+public class FallenPlatform : Resetable {
 
 	public Collider2D Colid = null;
 	public Rigidbody2D Rigidbody = null;
@@ -23,13 +23,28 @@ public class FallenPlatform : MonoBehaviour {
 				Color Color = platformSprite.color;
 				Color.a -= FadeOutSpeed*Time.deltaTime;
 				platformSprite.color = Color;
-				if(Color.a <= 0f) Destroy(gameObject);
+				if(Color.a <= 0f) gameObject.SetActive(false);
 			}
 		}
 	}
 
 	virtual internal void OnTriggerEnter2D(Collider2D col)
 	{
-		Fallen = true;
+		PlayerCharacter PC = col.gameObject.GetComponent<PlayerCharacter>();
+		if(PC != null)
+		{
+			Fallen = true;
+		}
+	}
+	internal override void Reset ()
+	{
+		Color Color = platformSprite.color;
+		Color.a = 255f;
+		platformSprite.color = Color;
+		Colid.enabled = true;
+		Rigidbody.isKinematic = true;
+		Fallen = false;
+		currentDelais = 0f;
+		base.Reset ();
 	}
 }
