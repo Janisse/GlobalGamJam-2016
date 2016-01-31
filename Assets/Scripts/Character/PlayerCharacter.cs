@@ -13,6 +13,7 @@ public class PlayerCharacter : MonoBehaviour
 	public CameraEffect CamEffect = null;
 	public ParticleSystem fireParticles = null;
 	public ParticleSystem WindParticles = null;
+	public AudioSource RespawnSound = null;
 	#endregion
 
 	#region Properties
@@ -113,7 +114,7 @@ public class PlayerCharacter : MonoBehaviour
 
 	internal void Respawn()
 	{
-		
+		RespawnSound.Play();
 		CamEffect.SpawnEffect();
 		GameMode.instance.ResetableManager.ResetAll ();
 		GameMode.instance.SpawnPlayer ();

@@ -11,7 +11,7 @@ public class Gauge : MonoBehaviour
 	public float[] timeValues = null;
 	public float maxGaugeWidth = 290f;
 	public Transform gaugeContainer = null;
-	public RectTransform gaugeTransform = null;
+	public Image gaugeImage = null;
 	public Image image = null;
 	public GameObject gaugeSeparation = null;
 
@@ -53,7 +53,7 @@ public class Gauge : MonoBehaviour
 			//Formule Separator placement
 			currentTime += + timeValues[i];
 			float placeX = (currentTime / totalTime) * maxGaugeWidth;
-			gaugeTrsf.localPosition = new Vector3 (placeX, 0f, 0f);
+			gaugeTrsf.localPosition = new Vector3 (placeX + 5f, 0f, 0f);
 
 			_gaugeSeparationDict.Add (newGaugeGO);
 		}
@@ -62,7 +62,7 @@ public class Gauge : MonoBehaviour
 	internal bool UpdateGauge (float a_time)
 	{
 		float a_gaugeValue = Mathf.Clamp01(a_time / totalTime);
-		gaugeTransform.sizeDelta = new Vector2 (a_gaugeValue * maxGaugeWidth, gaugeTransform.sizeDelta.y);
+		gaugeImage.fillAmount = a_gaugeValue;
 
 		//Check if Next Step
 		float value = 0f;

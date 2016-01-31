@@ -4,7 +4,7 @@ using System.Collections;
 public class StringPlatform : FallenPlatform {
 
 	public SpriteRenderer String = null;
-
+	public AudioSource SoundBurn = null;
 	protected override void Update ()
 	{
 		if (Fallen)
@@ -24,6 +24,8 @@ public class StringPlatform : FallenPlatform {
 			|| col.transform.tag == "FireBall")
 		{
 			Fallen = true;
+			SoundBurn.Play();
+			SoundFall.Play();
 		}
 	}
 
